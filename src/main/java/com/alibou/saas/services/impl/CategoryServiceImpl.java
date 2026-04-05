@@ -2,6 +2,7 @@ package com.alibou.saas.services.impl;
 
 import com.alibou.saas.common.PageResponse;
 import com.alibou.saas.entities.Category;
+import com.alibou.saas.exceptions.DuplicateResourceException;
 import com.alibou.saas.mappers.CategoryMapper;
 import com.alibou.saas.repositories.CategoryRepository;
 import com.alibou.saas.requests.CategoryRequest;
@@ -80,7 +81,7 @@ public class CategoryServiceImpl implements CategoryService {
         final Optional<Category> category = this.categoryRepository.findByNameIgnoreCase(categoryName);
         if (category.isPresent()) {
             log.debug("Category already exists");
-            throw new RuntimeException("Category already exists"); // we will use custom exception later
+            throw new DuplicateResourceException("Category already exists");
         }
     }
 }

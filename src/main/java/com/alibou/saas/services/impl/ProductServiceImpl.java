@@ -3,6 +3,7 @@ package com.alibou.saas.services.impl;
 import com.alibou.saas.common.PageResponse;
 import com.alibou.saas.entities.Category;
 import com.alibou.saas.entities.Product;
+import com.alibou.saas.exceptions.DuplicateResourceException;
 import com.alibou.saas.mappers.ProductMapper;
 import com.alibou.saas.repositories.CategoryRepository;
 import com.alibou.saas.repositories.ProductRepository;
@@ -87,7 +88,7 @@ public class ProductServiceImpl implements ProductService {
         final Optional<Product> product = this.productRepository.findByReferenceIgnoreCase(reference);
         if (product.isPresent()) {
             log.debug("Product already exists");
-            throw new RuntimeException("Product already exists"); // we will use custom exception later
+            throw new DuplicateResourceException("Product already exists"); // we will use custom exception later
         }
     }
 
