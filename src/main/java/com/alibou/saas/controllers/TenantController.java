@@ -4,6 +4,7 @@ import com.alibou.saas.common.PageResponse;
 import com.alibou.saas.requests.RegisterTenantRequest;
 import com.alibou.saas.responses.TenantResponse;
 import com.alibou.saas.services.TenantService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/tenants")
 @RequiredArgsConstructor
+@Tag(name = "Tenant", description = "Tenant API")
 public class TenantController {
 
     private final TenantService service;

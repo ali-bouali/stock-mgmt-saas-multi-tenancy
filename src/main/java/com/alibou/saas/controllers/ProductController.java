@@ -4,6 +4,7 @@ import com.alibou.saas.common.PageResponse;
 import com.alibou.saas.requests.ProductRequest;
 import com.alibou.saas.responses.ProductResponse;
 import com.alibou.saas.services.ProductService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
+@Tag(name = "Product", description = "Product API")
 public class ProductController {
 
     private final ProductService service;

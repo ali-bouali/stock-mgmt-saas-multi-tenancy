@@ -4,6 +4,7 @@ import com.alibou.saas.common.PageResponse;
 import com.alibou.saas.requests.StockMvtRequest;
 import com.alibou.saas.responses.StockMvtResponse;
 import com.alibou.saas.services.StockMvtService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/stocks")
 @RequiredArgsConstructor
+@Tag(name = "Stock Mvt", description = "Stock Mvt API")
 public class StockMvtController {
 
     private final StockMvtService service;
