@@ -15,11 +15,13 @@ import java.math.BigDecimal;
 @Builder
 public class ProductResponse {
 
+    private String id;
     private String name;
     private String reference;
     private String description;
     private Integer alertThreshold;
     private BigDecimal price;
+    private String categoryId;
     private String categoryName;
     private int availableQuantity;
 }

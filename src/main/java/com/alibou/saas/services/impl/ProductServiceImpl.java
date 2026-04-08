@@ -50,7 +50,9 @@ public class ProductServiceImpl implements ProductService {
         }
 
         // check if product already exists
-        checkIfProductAlreadyExistsByReference(request.getReference());
+        if (!productExists.get().getReference().equalsIgnoreCase(request.getReference())) {
+            checkIfProductAlreadyExistsByReference(request.getReference());
+        }
 
         // check if category exists
         checkIfCategoryExistById(request.getCategoryId());

@@ -47,7 +47,9 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         // check if category already exists
-        checkIfCategoryAlreadyExistsByName(request.getName());
+        if (!existingCategory.get().getName().equalsIgnoreCase(request.getName())) {
+            checkIfCategoryAlreadyExistsByName(request.getName());
+        }
 
         final Category categoryToUpdate = this.categoryMapper.toEntity(request);
         categoryToUpdate.setId(id);

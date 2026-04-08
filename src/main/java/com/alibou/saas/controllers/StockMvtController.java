@@ -69,6 +69,19 @@ public class StockMvtController {
         return ResponseEntity.ok(this.service.findAll(page, size));
     }
 
+    @GetMapping("/product/{product-id}")
+    public ResponseEntity<PageResponse<StockMvtResponse>> findAllStockMvtsByProductId(
+            @PathVariable("product-id")
+            @NotNull(message = "Product ID cannot be null")
+            final String productId,
+            @RequestParam(name = "page", defaultValue = "0")
+            final int page,
+            @RequestParam(name = "size", defaultValue = "10")
+            final int size
+    ) {
+        return ResponseEntity.ok(this.service.findAllByProductId(productId, page, size));
+    }
+
     @DeleteMapping("/{stock-mvt-id}")
     public ResponseEntity<Void> deleteStockMvt(
             @PathVariable("stock-mvt-id")

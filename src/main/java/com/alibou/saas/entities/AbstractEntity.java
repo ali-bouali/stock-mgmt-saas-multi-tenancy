@@ -1,6 +1,5 @@
 package com.alibou.saas.entities;
 
-import com.alibou.saas.config.TenantContext;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -58,7 +57,7 @@ public class AbstractEntity {
     @PrePersist
     protected void onCreate() {
         if (this.deleted == null) {
-            this.deleted = Boolean.FALSE;
+            this.deleted = false;
         }
     }
 }

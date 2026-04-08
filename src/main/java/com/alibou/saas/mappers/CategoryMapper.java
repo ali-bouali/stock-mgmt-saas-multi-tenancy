@@ -12,12 +12,14 @@ public class CategoryMapper {
         return Category.builder()
                        .name(request.getName())
                        .description(request.getDescription())
+                       .deleted(false)
                        .build();
     }
 
     public CategoryResponse toResponse(final Category entity) {
         final int nbProduct = 0;// entity.getProducts() == null ? 0 : entity.getProducts().size();
         return CategoryResponse.builder()
+                               .id(entity.getId())
                                .name(entity.getName())
                                .description(entity.getDescription())
                                .nbProducts(nbProduct)

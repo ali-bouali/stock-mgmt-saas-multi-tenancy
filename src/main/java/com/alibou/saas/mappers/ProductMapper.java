@@ -19,16 +19,20 @@ public class ProductMapper {
                       .category(Category.builder()
                                         .id(request.getCategoryId())
                                         .build())
+                      .deleted(false)
                       .build();
     }
 
     public ProductResponse toResponse(final Product product) {
         return ProductResponse.builder()
+                              .id(product.getId())
                               .name(product.getName())
                               .reference(product.getReference())
                               .description(product.getDescription())
                               .price(product.getPrice())
                               .alertThreshold(product.getAlertThreshold())
+                              .categoryId(product.getCategory()
+                                                 .getId())
                               .categoryName(product.getCategory()
                                                    .getName())
                               // .availableQuantity() to be later implemented

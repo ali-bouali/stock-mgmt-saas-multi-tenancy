@@ -22,6 +22,7 @@ public class UserMapper {
 
     public UserResponse toResponse(final User user) {
         return UserResponse.builder()
+                .id(user.getId())
                    .username(user.getUsername())
                    .email(user.getEmail())
                    .password(user.getPassword())

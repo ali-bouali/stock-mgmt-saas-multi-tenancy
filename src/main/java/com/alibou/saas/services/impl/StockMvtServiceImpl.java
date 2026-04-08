@@ -16,6 +16,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -33,6 +35,7 @@ public class StockMvtServiceImpl implements StockMvtService {
         checkIfProductExistsById(request.getProductId());
 
         final StockMvt entity = this.stockMvtMapper.toEntity(request);
+        entity.setDateMvt(LocalDate.now());
         this.stockMvtRepository.save(entity);
     }
 
@@ -48,6 +51,7 @@ public class StockMvtServiceImpl implements StockMvtService {
         checkIfProductExistsById(request.getProductId());
 
         final StockMvt stockMvtToUpdate = this.stockMvtMapper.toEntity(request);
+        stockMvtToUpdate.setDateMvt(LocalDate.now());
         stockMvtToUpdate.setId(id);
         this.stockMvtRepository.save(stockMvtToUpdate);
     }
@@ -81,5 +85,13 @@ public class StockMvtServiceImpl implements StockMvtService {
             log.debug("Product does not exist");
             throw new EntityNotFoundException("Product does not exist");
         }
+    }
+
+    @Override
+    public PageResponse<StockMvtResponse> findAllByProductId(final String productId, final int page, final int size) {
+        final PageRequest pageRequest = PageRequest.of(page, size);
+        final Page<StockMvt> stockMvts = this.stockMvtRepository.findAllByProductId(productId, pageRequest);
+        final Page<StockMvtResponse> stockMvtResponses = stockMvts.map(this.stockMvtMapper::toResponse);
+        return PageResponse.of(stockMvtResponses);
     }
 }

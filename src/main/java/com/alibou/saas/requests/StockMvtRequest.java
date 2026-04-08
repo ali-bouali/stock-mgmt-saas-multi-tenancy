@@ -20,12 +20,11 @@ import java.time.LocalDate;
 @Builder
 public class StockMvtRequest {
 
-    @NotBlank(message = "Type of movement should not be empty")
     private TypeMvt typeMvt;
     @Positive(message = "Quantity should be a positive number")
     private Integer quantity;
-    @NotNull(message = "Date of movement should not be empty")
-    @PastOrPresent(message = "Date of movement should be in the past or present")
+    // @NotNull(message = "Date of movement should not be empty")
+    // @PastOrPresent(message = "Date of movement should be in the past or present")
     private LocalDate dateMvt;
     private String comment;
     @NotBlank(message = "Product ID should not be empty")

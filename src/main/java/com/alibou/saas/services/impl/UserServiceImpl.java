@@ -2,6 +2,7 @@ package com.alibou.saas.services.impl;
 
 import com.alibou.saas.common.PageResponse;
 import com.alibou.saas.config.TenantContext;
+import com.alibou.saas.entities.Tenant;
 import com.alibou.saas.entities.User;
 import com.alibou.saas.entities.UserRole;
 import com.alibou.saas.exceptions.DuplicateResourceException;
@@ -53,6 +54,7 @@ public class UserServiceImpl implements UserService {
         }
 
         final User user = this.userMapper.toEntity(request);
+        user.setTenant(Tenant.builder().id(tenantId).build());
 
         this.repository.save(user);
 

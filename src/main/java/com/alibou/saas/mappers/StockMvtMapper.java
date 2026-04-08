@@ -18,11 +18,13 @@ public class StockMvtMapper {
                        .product(Product.builder()
                                        .id(request.getProductId())
                                        .build())
+                .deleted(false)
                        .build();
     }
 
     public StockMvtResponse toResponse(final StockMvt entity) {
         return StockMvtResponse.builder()
+                .id(entity.getId())
                                .dateMvt(entity.getDateMvt())
                                .comment(entity.getComment())
                                .typeMvt(entity.getTypeMvt())
