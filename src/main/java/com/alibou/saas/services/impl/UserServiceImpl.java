@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
         }
 
         final User user = this.userMapper.toEntity(request);
+        user.setPassword(this.passwordEncoder.encode(request.getPassword()));
         user.setTenant(Tenant.builder().id(tenantId).build());
 
         this.repository.save(user);

@@ -129,7 +129,7 @@ public class TenantServiceImpl implements TenantService {
         this.tenantRepository.save(tenant);
     }
 
-    private void createInitiaAdminUser(final Tenant tenant) {
+    private void    createInitiaAdminUser(final Tenant tenant) {
         // check if the user already exists
         if (this.userRepository.existsByUsername(tenant.getAdminUsername())) {
             throw new DuplicateResourceException("User already exists");
@@ -140,7 +140,7 @@ public class TenantServiceImpl implements TenantService {
                                    .email(tenant.getAdminEmail())
                                    .firstName(extractFirstName(tenant.getAdminFullName()))
                                    .lastName(extractLastName(tenant.getAdminFullName()))
-                                   .password(this.passwordEncoder.encode(tenant.getAdminPassword()))
+                                   .password(tenant.getAdminPassword())
                                    .role(UserRole.ROLE_COMPANY_ADMIN)
                                    .tenant(tenant)
                                    .enabled(true)
